@@ -22,7 +22,7 @@ public class Main {
         // Create do-while loop that runs unless the user enters "3"
         do { // Create main menu:
             // Show prompt for user showing the possible options and asking for an input
-            System.out.println("Enter your command!");
+            System.out.println("Home Screen | Enter your command!");
             System.out.println("\t1. Show all Products");
             System.out.println("\t2. Show cart ");
             System.out.println("\t3. Exit.");
@@ -62,8 +62,8 @@ public class Main {
     public static void loadProductsFromFile(){
         // Read data from file: From WorkingWithFileIO >> BufferedReaderExercise example
         try { // Create a try/catch statement to handle file import
-            // Create an instance of FileReader with an approximate path of "./src/main/java/com/<YourInitial>/inventory.csv"
-            FileReader inventoryFile = new FileReader("./src/main/java/com/kf/inventory.csv");
+            // Create an instance of FileReader with an approximate path of "./src/main/java/com/<YourInitial>/inventory.txt"
+            FileReader inventoryFile = new FileReader("./src/main/java/com/kf/inventory.txt");
             // Create an instance of BufferedReader that takes in the FileInputStream instance above
             BufferedReader bufferedReader = new BufferedReader(inventoryFile);
 
@@ -80,11 +80,7 @@ public class Main {
                 // Create a variable that stores a Product instance using the data from the current line
                 Product currentProduct = new Product(productIdInput, productNameInput, productPriceInput);
                 // Add the variable to the static inventory variable
-                System.out.printf("Product ID: %s, Name: %s, Price: $%.2f\n",
-                        currentProduct.getProductId()
-
-                );
-
+                inventory.add(currentProduct);
             }
             // Close the scanner instance
             bufferedReader.close();
@@ -101,10 +97,15 @@ public class Main {
     public static void showProducts(){
         // iterate through the inventory
         // Print each product one at a time
-        for(int i=0; i < inventory.size();i++){
-            Product currentProduct = inventory.get(i);
+        for (Product currentProduct : inventory) { // an enhanced for?
             System.out.println(currentProduct);
         }
+
+
+
+    }
+
+    public static void checkout(){
 
     }
 
@@ -113,26 +114,43 @@ public class Main {
         // Display total number of items in the cart
         // Iterate through the cart
         // Print each item in cart one at a time
-        for(int  i=0; i < cart.size();i++){
-            Product currentProduct = cart.get(i);
+        for (Product currentProduct : cart) {
             System.out.println(currentProduct);
+         // Initialize variable for productIdInput
+
+
         }
+
+        String subInput;
+
+        do{
+            System.out.println("\tC. Checkout");
+            System.out.println("\tX. Go Back To Home Screen");
+            System.out.print("Command: ");
+
+            subInput = scanner.nextLine();
+
+            // Create switch statement that handles cases related to each menu item
+            switch (subInput){
+                // Case "c": Checkout
+                case "C":
+                    // Runs custom static method called checkout
+                    checkout();
+                    break;
+                // Case "x": Go Back To Home Screen
+                case "X":
+                    // Print message that says "Going back to home screen"
+                    System.out.println("Going back to Home Screen...");
+                    break;
+                // Default:
+                // Show message "Input command not found"
+                default:
+                    System.out.println("Input command not found.");
+
+            }
+
+        } while (!subInput.equalsIgnoreCase("X"));
 
     }
 
-
-
-
-
-    // Create sub-menu
-    // Initialize subInput variable for user input
-    // Show prompt for user showing the possible options and asking for an input
-    // Create do-while loop that runs unless the user enters "2"
-    // Create switch statement that handles cases related to each menu item
-    // Case "1": Checkout
-    // Runs custom static method called checkout
-    // Case "2": Go Back To Home Screen
-    // Print message that says "Going back to home screen"
-    // Default:
-    // Show message "Input command not found"
 }
