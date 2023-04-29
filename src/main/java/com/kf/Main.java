@@ -150,7 +150,9 @@ public class Main {
     // Create static method called showCart that return nothing
     public static void showCart(){
         // Display total number of items in the cart
-        // Iterate through the cart
+        int cartSize = cart.size();
+        System.out.println("\nNumber of Items in Cart: " + cartSize );
+            // Iterate through the cart
         // Print each item in cart one at a time
         for (Product currentProduct : cart) {
             System.out.println(currentProduct);
