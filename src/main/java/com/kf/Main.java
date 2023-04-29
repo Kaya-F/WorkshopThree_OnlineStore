@@ -123,30 +123,6 @@ public class Main {
 
     }
 
-    // Create static method called checkout that return nothing
-    public static void checkout(){
-        // Create a variable to store the sum of the cart
-        float cartSum = 0;
-        // Iterate through the cart
-        for (Product product : cart) {
-            // Add each product price to the sum variable
-            cartSum += product.getProductPrice();
-        }
-        // Print out the total owed(sum variable) by the user
-        System.out.println("Subtotal: $" + cartSum);
-
-        // Print a message to the user to pay for the items
-        // Create a variable and prompt from the user for an int that represents how much they are willing to pay in cash
-
-        // If the amount given by the user covers the entire amount owed
-        // Print out the difference that is left over
-        // Print all the items that the user has purchased
-        // Clear the cart arraylist
-        // Return to the main menu
-        // Otherwise
-        // Let the user know that the amount given doesn't cover the full amount
-    }
-
     // Create static method called showCart that return nothing
     public static void showCart(){
         // Display total number of items in the cart
@@ -165,7 +141,7 @@ public class Main {
         do{  // Create do-while loop that runs unless the user enters "x"
 
             // Show prompt for user showing the possible options and asking for an input
-            System.out.println("\tC. Checkout");
+            System.out.println("\tC. Proceed to Checkout");
             System.out.println("\tX. Go Back To Home Screen");
             System.out.print("Command: ");
 
@@ -191,6 +167,43 @@ public class Main {
             }
 
         } while (!subInput.equalsIgnoreCase("X"));
+
+    }
+    // Create static method called checkout that return nothing
+    public static void checkout(){
+        int cartSize = cart.size();
+        // Create a variable to store the sum of the cart
+        float cartSum = 0;
+        // Iterate through the cart
+        for (Product product : cart) {
+            // Add each product price to the sum variable
+            cartSum += product.getProductPrice();
+        }
+        // Print out the total owed(sum variable) by the user
+        System.out.printf("Subtotal (%d Items): $%.2f\n", cartSize, cartSum);
+
+        // Print a message to the user to pay for the items
+        System.out.println("Pay for your items with cash.");
+        // Create a variable and prompt from the user for a float that represents how much they are willing to pay in cash
+        System.out.print("Enter amount here: ");
+        float cashAmount = scanner.nextFloat();
+        // If the amount given by the user covers the entire amount owed
+        if (cashAmount >= cartSum) {
+            float difference = cashAmount - cartSum;
+            // Print out the difference that is left over
+            System.out.println("Transaction Complete! Your change is $" + difference);
+            // Print all the items that the user has purchased
+             System.out.println("You have purchased the following items:");
+             for (Product product : cart) {
+                 System.out.println(product.toString());
+             }
+            // Clear the cart arraylist
+            cart.clear();
+        } else { // Otherwise
+            // Let the user know that the amount given doesn't cover the full amount
+            System.out.println("The amount given is not enough to cover your total cost.");
+
+        }
 
     }
 
