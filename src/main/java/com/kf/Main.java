@@ -126,14 +126,14 @@ public class Main {
     // Create static method called checkout that return nothing
     public static void checkout(){
         // Create a variable to store the sum of the cart
-        String cartSum;
+        float cartSum = 0;
         // Iterate through the cart
-        for (Product currentProduct : cart) {
-            System.out.println(currentProduct);
+        for (Product product : cart) {
+            // Add each product price to the sum variable
+            cartSum += product.getProductPrice();
         }
-        // Add each product price to the sum variable
         // Print out the total owed(sum variable) by the user
-        System.out.println("Subtotal: %$.2f ");
+        System.out.println("Subtotal: $" + cartSum);
 
         // Print a message to the user to pay for the items
         // Create a variable and prompt from the user for an int that represents how much they are willing to pay in cash
