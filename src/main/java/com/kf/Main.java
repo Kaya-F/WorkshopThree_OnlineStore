@@ -77,8 +77,13 @@ public class Main {
                 String productIdInput = splitInput[0];
                 String productNameInput = splitInput[1];
                 float productPriceInput = Float.parseFloat(splitInput[2]);
-                // Add the variable to the static inventory variable
+                // Create a variable that stores a Product instance using the data from the current line
                 Product currentProduct = new Product(productIdInput, productNameInput, productPriceInput);
+                // Add the variable to the static inventory variable
+                System.out.printf("Product ID: %s, Name: %s, Price: $%.2f\n",
+                        currentProduct.getProductId()
+
+                );
 
             }
             // Close the scanner instance

@@ -11,27 +11,27 @@ public class Product {
         this.price = price;
     }
 
-    public String getId() {
+    public String getProductId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setProductId(String id) {
         this.id = id;
     }
 
-    public String getName() {
+    public String getProductName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setProductName(String name) {
         this.name = name;
     }
 
-    public Float getPrice() {
+    public Float getProductPrice() {
         return price;
     }
 
-    public void setPrice(Float price) {
+    public void setProductPrice(Float price) {
         this.price = price;
     }
 
