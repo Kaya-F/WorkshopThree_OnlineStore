@@ -100,13 +100,51 @@ public class Main {
         for (Product currentProduct : inventory) { // an enhanced for?
             System.out.println(currentProduct);
         }
+        // Initialize variable for productIdInput
+        String productInputId;
+        // Create do-while loop that runs unless the user enters "x"
+        do {
+            System.out.println("\nEnter a product ID to add to cart or exit back to the Home Screen with \"X\"");
+            productInputId = scanner.nextLine();
 
+            if(!productInputId.equalsIgnoreCase("x")){
+                for(Product product : inventory){
+                    if(product.getProductId().equalsIgnoreCase(productInputId)){
+                        cart.add(product);
+                        System.out.println("Added " + product.getProductName() + " to cart.");
+                        break;
+                    }
+                }
+            }
+
+
+        } while (!productInputId.equalsIgnoreCase("X"));
 
 
     }
 
+    // Create static method called checkout that return nothing
     public static void checkout(){
+        // Create a variable to store the sum of the cart
+        String cartSum;
+        // Iterate through the cart
+        for (Product currentProduct : cart) {
+            System.out.println(currentProduct);
+        }
+        // Add each product price to the sum variable
+        // Print out the total owed(sum variable) by the user
+        System.out.println("Subtotal: %$.2f ");
 
+        // Print a message to the user to pay for the items
+        // Create a variable and prompt from the user for an int that represents how much they are willing to pay in cash
+
+        // If the amount given by the user covers the entire amount owed
+        // Print out the difference that is left over
+        // Print all the items that the user has purchased
+        // Clear the cart arraylist
+        // Return to the main menu
+        // Otherwise
+        // Let the user know that the amount given doesn't cover the full amount
     }
 
     // Create static method called showCart that return nothing
@@ -116,14 +154,15 @@ public class Main {
         // Print each item in cart one at a time
         for (Product currentProduct : cart) {
             System.out.println(currentProduct);
-         // Initialize variable for productIdInput
-
-
         }
 
+        // Create sub-menu
+        // Initialize subInput variable for user input
         String subInput;
 
-        do{
+        do{  // Create do-while loop that runs unless the user enters "x"
+
+            // Show prompt for user showing the possible options and asking for an input
             System.out.println("\tC. Checkout");
             System.out.println("\tX. Go Back To Home Screen");
             System.out.print("Command: ");
