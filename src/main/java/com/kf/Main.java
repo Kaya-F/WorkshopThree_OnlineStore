@@ -62,7 +62,7 @@ public class Main {
     public static void loadProductsFromFile(){
         // Read data from file: From WorkingWithFileIO >> BufferedReaderExercise example
         try { // Create a try/catch statement to handle file import
-            // Create an instance of FileReader with an approximate path of "./src/main/java/com/<YourInitial>/inventory.txt"
+            // Create an instance of FileReader with an approximate path of "./src/main/java/com/<YourInitials>/inventory.txt"
             FileReader inventoryFile = new FileReader("./src/main/java/com/kf/inventory.txt");
             // Create an instance of BufferedReader that takes in the FileInputStream instance above
             BufferedReader bufferedReader = new BufferedReader(inventoryFile);
@@ -163,14 +163,14 @@ public class Main {
                 // Show message "Input command not found"
                 default:
                     System.out.println("Input command not found.");
-
+                break;
             }
 
         } while (!subInput.equalsIgnoreCase("X"));
 
     }
     // Create static method called checkout that return nothing
-    public static void checkout(){
+    public static void checkout() {
         int cartSize = cart.size();
         // Create a variable to store the sum of the cart
         float cartSum = 0;
@@ -188,22 +188,27 @@ public class Main {
         System.out.print("Enter amount here: ");
         float cashAmount = scanner.nextFloat();
         // If the amount given by the user covers the entire amount owed
+        float difference = 0;
         if (cashAmount >= cartSum) {
-            float difference = cashAmount - cartSum;
+            difference = cashAmount - cartSum;
             // Print out the difference that is left over
-            System.out.println("Transaction Complete! Your change is $" + difference);
+            System.out.printf("Transaction Complete! Your change is $%.2f\n", difference);
             // Print all the items that the user has purchased
-             System.out.println("You have purchased the following items:");
-             for (Product product : cart) {
-                 System.out.println(product.toString());
-             }
+            System.out.println("You have purchased the following items:");
+            for (Product product : cart) {
+                System.out.println(product.toString());
+            }
             // Clear the cart arraylist
             cart.clear();
+            // Return to the main menu
+            return;
         } else { // Otherwise
             // Let the user know that the amount given doesn't cover the full amount
             System.out.println("The amount given is not enough to cover your total cost.");
+            System.out.println("Returning full amount...");
 
         }
+        scanner.close();
 
     }
 
